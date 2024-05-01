@@ -12,7 +12,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2182
       ZOOKEEPER_TICK_TIME: 2000
     volumes:
-      - /home/ubuntu/confluent/zookeeper:/var/lib/zookeeper/data
+      - ./zookeeper:/var/lib/zookeeper/data
   
   broker:
     image: confluentinc/cp-server:7.4.0
@@ -29,7 +29,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2182'
       #KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       # KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://74.80.247.227:9098
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9098
       KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
@@ -45,7 +45,7 @@ services:
       CONFLUENT_METRICS_ENABLE: 'true'
       CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
     volumes:
-       - /home/ubuntu/confluent/kafka:/var/lib/kafka/data
+       - ./kafka:/var/lib/kafka/data
 
   schema-registry:
     image: confluentinc/cp-schema-registry:7.3.0
